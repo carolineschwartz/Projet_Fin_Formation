@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-public class VideoEntity implements Serializable {
+public class Video implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,14 +34,14 @@ public class VideoEntity implements Serializable {
    // @OneToOne (targetEntity = modele.SportEntity.class, mappedBy = "id", cascade = CascadeType.ALL)
    // private int sportId;
 
-    public VideoEntity() {
+    public Video() {
     }
 
-    public VideoEntity(String url) {
+    public Video(String url) {
         this.url = url;
     }
 
-    public VideoEntity(String url, int sportId) {
+    public Video(String url, int sportId) {
         this.url = url;
         this.sport = sport;
     }

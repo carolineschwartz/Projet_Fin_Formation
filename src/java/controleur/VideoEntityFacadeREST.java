@@ -38,8 +38,9 @@ public class VideoEntityFacadeREST extends AbstractFacade<VideoEntity> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(VideoEntity entity) {
+    public VideoEntity create(VideoEntity entity) {
         super.create(entity);
+        return entity;
     }
 
     @PUT

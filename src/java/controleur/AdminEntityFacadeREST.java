@@ -34,10 +34,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import modele.AdminEntity;
-import java.security.*;
-import java.util.Arrays;
 import org.apache.commons.codec.digest.*;
 
 /**
@@ -68,8 +65,9 @@ public class AdminEntityFacadeREST extends AbstractFacade<AdminEntity> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(AdminEntity entity) {
+    public AdminEntity create(AdminEntity entity) {
         super.create(entity);
+        return entity;
     }
     
 //    @POST @Consumes("application/json")

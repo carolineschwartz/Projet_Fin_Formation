@@ -37,14 +37,15 @@ public class SportEntityFacadeREST extends AbstractFacade<SportEntity> {
 
     @POST
     @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(SportEntity entity) {
+    @Consumes({MediaType.APPLICATION_JSON})
+    public SportEntity create(SportEntity entity) {
         super.create(entity);
+        return entity;
     }
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, SportEntity entity) {
         super.edit(entity);
     }
