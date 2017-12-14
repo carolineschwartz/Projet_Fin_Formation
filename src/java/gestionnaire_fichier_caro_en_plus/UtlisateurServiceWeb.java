@@ -1,12 +1,10 @@
-///*
-// * To change this license header, choose License Headers in Project Properties.
-// * To change this template file, choose Tools | Templates
-// * and open the template in the editor.
-// */
-//package api;
+//package gestionnaire_fichier_caro_en_plus;
 //
-//import controleur.ControleurUtilisateur;
+//
+//
+//import gestionnaire_fichier_caro_en_plus.GestionnaireUtilisateur;
 //import java.util.List;
+//
 //import javax.ejb.EJB;
 //import javax.ejb.Stateless;
 //import javax.ws.rs.Consumes;
@@ -28,12 +26,14 @@
 //public class UtlisateurServiceWeb {
 //
 //    @EJB
-//    private ControleurUtilisateur controleurUtilisateur;
+//    private GestionnaireUtilisateur gestionnaireUtilisateur;
+//
+//    
 //    
 //    @GET
 //    @Produces("application/json")
 //    public List<Utilisateur> findAllUtilisateur() {
-//        return controleurUtilisateur.findAll();
+//        return gestionnaireUtilisateur.findAll();
 //    }
 //
 //    @POST
@@ -45,7 +45,7 @@
 //                        @FormParam ("password") String password, @FormParam ("dateNaiss") String dateNaiss, 
 //                        @FormParam ("taille") double taille, @FormParam ("poids") double poids) {
 //        
-//        return controleurUtilisateur.create(nom, prenom, mail, username, 
+//        return gestionnaireUtilisateur.create(nom, prenom, mail, username, 
 //                                            password, dateNaiss, taille, poids);
 //    }
 //
@@ -61,12 +61,14 @@
 //        
 //        Utilisateur utilisateurUdapte = new Utilisateur();
 //        
-//        utilisateurUdapte=controleurUtilisateur.udapte(id,nom, prenom, mail, username, 
+//        utilisateurUdapte=gestionnaireUtilisateur.udapte(id,nom, prenom, mail, username, 
 //                                            password, dateNaiss, taille, poids);
 //        return utilisateurUdapte;
 //    }
 //
-//}
+//    }
+//
+//
 //
 //
 // 

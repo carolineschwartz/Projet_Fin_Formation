@@ -10,7 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -18,31 +19,37 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author schwartz
  */
 @Entity
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 @XmlRootElement
-public class Video implements Serializable {
+public class Administrateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
+
     private String nom;
-    private String url;
-    
-    @ManyToOne
-    private Sport sport;
+    private String prenom;
+    private String email;
+    private String username;
+    private String passWord; 
 
     // Constructeurs
-    public Video() {
+    
+    public Administrateur() {
     }
 
-    public Video(String nom, String url, Sport sport) {
+    public Administrateur(String nom, String prenom, String email, String username, String passWord) {
         this.nom = nom;
-        this.url = url;
-        this.sport = sport;
+        this.prenom = prenom;
+        this.email = email;
+        this.username = username;
+        this.passWord = passWord;
     }
-   
+    
+    // getter et setter
 
-    public Long getId() {    
+    public Long getId() {
         return id;
     }
 
@@ -58,22 +65,38 @@ public class Video implements Serializable {
         this.nom = nom;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public Sport getSport() {
-        return sport;
+    public String getEmail() {
+        return email;
     }
 
-    // getter et setter
-    public void setSport(Sport sport) {   
-        this.sport = sport;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -85,10 +108,10 @@ public class Video implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Video)) {
+        if (!(object instanceof Administrateur)) {
             return false;
         }
-        Video other = (Video) object;
+        Administrateur other = (Administrateur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -97,7 +120,7 @@ public class Video implements Serializable {
 
     @Override
     public String toString() {
-        return "modele.Video[ id=" + id + " ]";
+        return "modele.Administrateur[ id=" + id + " ]";
     }
     
 }

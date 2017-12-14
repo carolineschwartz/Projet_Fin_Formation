@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.SecondaryTable;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -21,117 +21,34 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-public class Utilisateur implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Utilisateur extends Administrateur implements Serializable  {
     
-    private String nom;
-    private String prenom;
-    private String mail;
-    private String username;
-    private String passWord;  
     private String dateNaiss;
     private double taille;
     private double poids;
     
-    @ManyToMany
-    private List<Sport> sports =new ArrayList();
+    @OneToMany(mappedBy="utilisateur")
+    private List<Activite> activites =new ArrayList();
     
+    @ManyToMany
+    private List<Utilisateur> listAmi =new ArrayList();
+    
+    @OneToMany(mappedBy="utilisateur")
+    private List<Poids> listePoids=new ArrayList<>();
     
     // Constructeurs
     public Utilisateur() {
     }
-
-    public Utilisateur(Long id, String nom, String prenom, String mail, String username, String passWord, String dateNaiss, double taille, double poids) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mail = mail;
-        this.username = username;
-        this.passWord = passWord;
+    
+    public Utilisateur(String nom, String prenom, String email, String username, String passWord,
+                 String dateNaiss, double taille, double poids ) {
+        super(nom, prenom, email, username, passWord);
         this.dateNaiss = dateNaiss;
         this.taille = taille;
         this.poids = poids;
     }
-    
-    public Utilisateur(String nom, String prenom, String mail, String username, String passWord, 
-                        String dateNaiss,  double taille, double poids) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.username = username;
-        this.passWord = passWord;
-        this.mail = mail;
-        this.dateNaiss = dateNaiss;
-        this.poids = poids;
-        this.taille = taille;
-    }
 
-    public Utilisateur(String mail, String passWord) {
-        this.mail = mail;
-        this.passWord = passWord;
-    }
-
-    
     // getter, setter
-    public List<Sport> getSports() {
-        return sports;
-    }
-
-    public void setSports(List<Sport> sports) {
-        this.sports = sports;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-
-     public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getpassWord() {
-        return passWord;
-    }
-
-    public void setpassWord(String passWord) {
-        this.passWord = passWord;
-    }
-    
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
     public String getDateNaiss() {
         return dateNaiss;
@@ -139,6 +56,14 @@ public class Utilisateur implements Serializable {
 
     public void setDateNaiss(String dateNaiss) {
         this.dateNaiss = dateNaiss;
+    }
+
+    public double getTaille() {
+        return taille;
+    }
+
+    public void setTaille(double taille) {
+        this.taille = taille;
     }
 
     public double getPoids() {
@@ -149,17 +74,34 @@ public class Utilisateur implements Serializable {
         this.poids = poids;
     }
 
-    public double getTaille() {
-        return taille;
+    public List<Activite> getActivites() {
+        return activites;
     }
 
-    public void setTaille(double taille) {
-        this.taille = taille;
+    public void setActivites(List<Activite> activites) {
+        this.activites = activites;
     }
+
+    public List<Utilisateur> getListAmi() {
+        return listAmi;
+    }
+
+    public void setListAmi(List<Utilisateur> listAmi) {
+        this.listAmi = listAmi;
+    }
+
+    public List<Poids> getListePoids() {
+        return listePoids;
+    }
+
+    public void setListePoids(List<Poids> listePoids) {
+        this.listePoids = listePoids;
+    }
+
     
     // Calcul IMC
     public double calculImc(double taille, double poids){
-        return(poids/(sqr(taille)));
+        return(poids/(Math.pow(taille,2)));
     }
     
 
@@ -177,7 +119,7 @@ public class Utilisateur implements Serializable {
             return false;
         }
         Utilisateur other = (Utilisateur) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((super.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -187,9 +129,4 @@ public class Utilisateur implements Serializable {
     public String toString() {
         return "modele.Utilisateur[ id=" + id + " ]";
     }
-
-    private double sqr(double taille) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

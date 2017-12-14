@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -19,30 +19,42 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-public class Video implements Serializable {
+public class Activite implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String nom;
-    private String url;
+    private Long id;    
+    private double duree;
+    private int nombre;
+    private String date;
     
-    @ManyToOne
+    @OneToOne
     private Sport sport;
-
+    
+    @OneToOne
+    private Utilisateur utilisateur;
+    
     // Constructeurs
-    public Video() {
+    public Activite() {
     }
 
-    public Video(String nom, String url, Sport sport) {
-        this.nom = nom;
-        this.url = url;
+    public Activite(double duree, String date) {
+        this.duree = duree;
+        this.date = date;
+    }
+
+    public Activite(double duree, int nombre, String date, Sport sport, Utilisateur utilisateur) {
+        this.duree = duree;
+        this.nombre = nombre;
+        this.date = date;
         this.sport = sport;
+        this.utilisateur = utilisateur;
     }
-   
+ 
+      // getter et setter
 
-    public Long getId() {    
+    public Long getId() {
         return id;
     }
 
@@ -50,30 +62,47 @@ public class Video implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public double getDuree() {
+        return duree;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setDuree(double duree) {
+        this.duree = duree;
     }
 
-    public String getUrl() {
-        return url;
+    public int getNombre() {
+        return nombre;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Sport getSport() {
         return sport;
     }
 
-    // getter et setter
-    public void setSport(Sport sport) {   
+    public void setSport(Sport sport) {
         this.sport = sport;
     }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+    
+    
 
     @Override
     public int hashCode() {
@@ -85,10 +114,10 @@ public class Video implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Video)) {
+        if (!(object instanceof Activite)) {
             return false;
         }
-        Video other = (Video) object;
+        Activite other = (Activite) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -97,7 +126,7 @@ public class Video implements Serializable {
 
     @Override
     public String toString() {
-        return "modele.Video[ id=" + id + " ]";
+        return "modele.Sport[ id=" + id + " ]";
     }
     
 }

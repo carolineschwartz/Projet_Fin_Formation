@@ -10,68 +10,43 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author schwartz
  */
 @Entity
-public class Calories implements Serializable {
+@XmlRootElement
+public class Poids implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+  
     private double valeur;
-    private double poids;
-    private double duree;
-    private double vitesse;
     
-    public Calories() {
-    }
-
-    public Calories(double valeur, double poids, double duree, double vitesse) {
-        this.valeur = valeur;
-        this.poids = poids;
-        this.duree = duree;
-        this.vitesse = vitesse;
-    }
-
-    public double getPoids() {
-        return poids;
-    }
-
-    public void setPoids(double poids) {
-        this.poids = poids;
-    }
-
-    public double getDuree() {
-        return duree;
-    }
-
-    public void setDuree(double duree) {
-        this.duree = duree;
-    }
-
-    public double getVitesse() {
-        return vitesse;
-    }
-
-    public void setVitesse(double vitesse) {
-        this.vitesse = vitesse;
-    }
-
+    @ManyToOne
+    private Utilisateur utilisateur;
+   
     
-    
-    public double getValeur() {
-        return valeur;
+    public Poids() {
     }
 
-    public void setValeur(double valeur) {
+    public Poids(Long id, double valeur) {
+        this.id = id;
         this.valeur = valeur;
     }
-    
-    
+
+    public Poids(double valeur) {
+        this.valeur = valeur;
+    }
+
+    // getter et setter
+
     public Long getId() {
         return id;
     }
@@ -79,6 +54,25 @@ public class Calories implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public double getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(double valeur) {
+        this.valeur = valeur;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+    
+
+   
 
     @Override
     public int hashCode() {
@@ -90,10 +84,10 @@ public class Calories implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Calories)) {
+        if (!(object instanceof Poids)) {
             return false;
         }
-        Calories other = (Calories) object;
+        Poids other = (Poids) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -102,7 +96,11 @@ public class Calories implements Serializable {
 
     @Override
     public String toString() {
-        return "modele.Calories[ id=" + id + " ]";
+        return "Poids{" + "id=" + id + ", valeur=" + valeur + '}';
     }
+
+  
+
+   
     
 }
