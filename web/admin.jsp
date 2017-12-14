@@ -24,7 +24,7 @@
             <a href="index.jsp">Retourner à la page d'accueil</a>
         </c:if>
         <c:if test="${connected}">
-            <table id="userlist" class="table table-striped">
+            <table id="list" class="table table-striped">
             </table>
 
             <!--<button name='update'>add user</button>-->
@@ -38,7 +38,7 @@
             <script>
 
                 function loadTable() {
-                    $("#userlist").html("");
+                    $("#list").html("");
                     $.ajax({
                         type: "GET",
                         async: true,
@@ -52,7 +52,7 @@
                                     thHTML += '<th scope="col">' + key + '</th>';
                                 });
                                 thHTML += '<th>Editer</th><th>Supprimer</th><';
-                                $('#userlist').append(thHTML);
+                                $('#list').append(thHTML);
                                 trHTML += '<tbody>';
                                 $.each(response, function (i, item) {
                                     trHTML += '<tr>';
@@ -63,7 +63,7 @@
                                             '<td><button name="del" value=' + item["id"] + '>supprimer</button></td></tr>';
                                 });
                                 trHTML += '</tbody>';
-                                $('#userlist').append(trHTML);
+                                $('#list').append(trHTML);
                             }
                         }
                     });
@@ -165,7 +165,7 @@
 
                                     })
                                     form += '<td><button name="update">update</button></td></tr>';
-                                    $("#userlist").append(form);
+                                    $("#list").append(form);
 
                                 }
                             }
@@ -188,7 +188,7 @@
                                         }
                                     });
                                     form += '<td><button name="update">update</button></td></tr>';
-                                    $("#userlist").append(form);
+                                    $("#list").append(form);
                                 }
                             }
                         });
