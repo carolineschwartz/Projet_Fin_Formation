@@ -51,9 +51,6 @@ public class AdminEntity implements Serializable {
     }
     
     
-    
-    
-    
     public Long getId() {
         return id;
     }

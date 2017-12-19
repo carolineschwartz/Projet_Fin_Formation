@@ -29,7 +29,7 @@ public class Video implements Serializable {
     private String nom;
     
     @ManyToOne
-    private SportEntity sport;
+    private Sport sport;
     
    // @OneToOne (targetEntity = modele.SportEntity.class, mappedBy = "id", cascade = CascadeType.ALL)
    // private int sportId;
@@ -46,6 +46,22 @@ public class Video implements Serializable {
         this.sport = sport;
     }
 
+    public String getNom() {
+      return nom;
+    }
+
+    public void setNom(String nom) {
+      this.nom = nom;
+    }
+
+    public Sport getSport() {
+      return sport;
+    }
+
+    public void setSport(Sport sport) {
+      this.sport = sport;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -54,16 +70,13 @@ public class Video implements Serializable {
         this.url = url;
     }
 
-    public SportEntity getSportId() {
+    public Sport getSportId() {
         return sport;
     }
 
-    public void setSportId(SportEntity sport) {
+    public void setSportId(Sport sport) {
         this.sport = sport;
     }
-    
-    
-    
     
     public Long getId() {
         return id;
@@ -83,10 +96,10 @@ public class Video implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof VideoEntity)) {
+        if (!(object instanceof Video)) {
             return false;
         }
-        VideoEntity other = (VideoEntity) object;
+        Video other = (Video) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +108,7 @@ public class Video implements Serializable {
 
     @Override
     public String toString() {
-        return "modele.VideoEntity[ id=" + id + " ]";
+        return "modele.Video[ id=" + id + " ]";
     }
     
 }

@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -88,14 +89,15 @@ public class Sport implements Serializable {
         this.activite = activite;
     }
 
-    public int getCalories() {
+    public int getCalorie() {
         return calorie;
     }
 
-    public void setCalories(int calorie) {
+    public void setCalorie(int calorie) {
         this.calorie = calorie;
     }
 
+  @XmlTransient
     public List<Video> getVideos() {
         return videos;
     }

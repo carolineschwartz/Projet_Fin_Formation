@@ -29,21 +29,21 @@
 
             <!--<button name='update'>add user</button>-->
             <button name='edit'>add</button><br>
-            <button name='user'>show user list</button><br>
-            <button name='sport'>show sport list</button><br>
-            <button name='video'>show video list</button>
+            <button name='user' value="modele.utilisateurentity">show user list</button><br>
+            <button name='sport' value="modele.sportentity">show sport list</button><br>
+            <button name='video' value="modele.video">show video list</button>
             
             
             <p>connected</p>
             <script>
 
-                function loadTable() {
+                function loadTable(api) {
                     $("#list").html("");
                     $.ajax({
                         type: "GET",
                         async: true,
                         contentType: 'application/json',
-                        url: "api/modele.utilisateurentity",
+                        url: "api/"+api,
                         success: function (response) {
                             if (response[0] !== null) {
                                 var thHTML = '';
@@ -198,6 +198,32 @@
                 $(document).ready(function () {
 
                     //                   $("button[name=add]").hide();
+                    
+                    $("body").delegate("button","click",function (){
+                        switch ($(this).attr("name")) {
+                            case "edit" :
+                                editUser($(this).val());
+                                alert($(this).val() + " " + $(this).attr("name"));
+                                brake;
+                            case "del" :
+                                delUser($(this).val());
+                                alert("del done");
+                                brake;
+                            case "update":
+                                alert("add user");
+                                addUser();
+                                brake;
+                            case "user":
+                            case "sport":
+                            case "video":
+                                loadTable($(this).val());
+                                brake;
+                                
+                        }
+                        
+                        
+                    });
+        
                     $("body").delegate("button", "click", function () {
                         if ($(this).attr("name") === 'edit')
                         {

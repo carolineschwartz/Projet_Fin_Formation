@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,29 +28,33 @@ public class SportEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+    private Long id;
     private String nom;
+    private String iconeUrl;
+    private int calorie;
+    
+    @OneToMany(mappedBy="sport")
+    private List<Video> videos = new ArrayList<>();
 
-    @ManyToMany(mappedBy="sports")
-    private List<UtilisateurEntity> utilisateurs=new ArrayList();
+    @OneToOne(mappedBy="sport")
+    private Activite activite;
     
     
     
     
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
+        hash += (Long) id;
         return hash;
     }
 

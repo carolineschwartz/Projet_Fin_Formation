@@ -74,6 +74,7 @@ public class Utilisateur extends Administrateur implements Serializable  {
         this.poids = poids;
     }
 
+  @XmlTransient
     public List<Activite> getActivites() {
         return activites;
     }
@@ -82,6 +83,7 @@ public class Utilisateur extends Administrateur implements Serializable  {
         this.activites = activites;
     }
 
+  @XmlTransient
     public List<Utilisateur> getListAmi() {
         return listAmi;
     }
@@ -90,6 +92,7 @@ public class Utilisateur extends Administrateur implements Serializable  {
         this.listAmi = listAmi;
     }
 
+  @XmlTransient
     public List<Poids> getListePoids() {
         return listePoids;
     }
