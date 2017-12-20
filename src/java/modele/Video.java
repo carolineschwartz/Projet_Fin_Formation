@@ -41,6 +41,17 @@ public class Video implements Serializable {
         this.url = url;
     }
 
+    public Video(String url, String nom, Sport sport) {
+      this.url = url;
+      this.nom = nom;
+      this.sport = sport;
+    }
+
+    public Video(String url, String nom) {
+      this.url = url;
+      this.nom = nom;
+    }
+
     public Video(String url, int sportId) {
         this.url = url;
         this.sport = sport;

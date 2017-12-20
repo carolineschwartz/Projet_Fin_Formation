@@ -18,6 +18,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -28,6 +30,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import modele.Administrateur;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -42,6 +45,13 @@ public class WebServiceAdministrateur extends AbstractFacade<Administrateur> {
 
     @PersistenceContext(unitName = "WebServeurSportPU")
     private EntityManager em;
+    
+    
+    @Context
+    private HttpServletRequest request;
+    @Context
+    private HttpServletResponse response;
+
 
     public WebServiceAdministrateur() {
         super(Administrateur.class);
@@ -67,11 +77,11 @@ public class WebServiceAdministrateur extends AbstractFacade<Administrateur> {
         Root<Administrateur> adminRoot = cq.from(Administrateur.class); // on recupere tous les admins
         List<Predicate> predicates = new ArrayList<>(); // on crée la liste de conditions
 
-        if ((ae.getUsername() != null)&&(ae.getPassword() != null)) {  //si le nom d'utilisateur  et mot de pas ne sont pas vide on les ajoute dans les conditions 
+        if ((ae.getUsername() != null)&&(ae.getPassWord() != null)) {  //si le nom d'utilisateur  et mot de pas ne sont pas vide on les ajoute dans les conditions 
         predicates.add(
                 qb.equal(adminRoot.get("username"),ae.getUsername()));
         predicates.add(
-                qb.equal(adminRoot.get("password"), ae.getPassword()));
+                qb.equal(adminRoot.get("password"), ae.getPassWord()));
     }
    
     

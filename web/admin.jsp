@@ -29,8 +29,8 @@
 
             <!--<button name='update'>add user</button>-->
             <button name='edit'>add</button><br>
-            <button name='user' value="modele.utilisateurentity">show user list</button><br>
-            <button name='sport' value="modele.sportentity">show sport list</button><br>
+            <button name='user' value="webServiceUtilisateur">show user list</button><br>
+            <button name='sport' value="webServiceSport">show sport list</button><br>
             <button name='video' value="modele.video">show video list</button>
             
             

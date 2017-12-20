@@ -84,13 +84,13 @@ public class AdminServlet extends HttpServlet {
       throws ServletException, IOException {
     HttpSession session = request.getSession(true);
     String string1 = request.getParameter("username");
-    String string2 = request.getParameter("password");
+    String string2 = request.getParameter("passWord");
 
     if (!string1.isEmpty() && !string2.isEmpty()) {
 
       string2 = DigestUtils.md5Hex(string2);
       System.out.println("username " + string1);
-      System.out.println("password " + string2);
+      System.out.println("passWord " + string2);
 
       CriteriaBuilder qb = em.getCriteriaBuilder();
       CriteriaQuery cq = qb.createQuery();
@@ -104,7 +104,7 @@ public class AdminServlet extends HttpServlet {
           qb.equal(customer.get("username"), string1));
 
       predicates.add(
-          qb.equal(customer.get("password"), string2));
+          qb.equal(customer.get("passWord"), string2));
 
       //query itself
       cq.select(customer)
