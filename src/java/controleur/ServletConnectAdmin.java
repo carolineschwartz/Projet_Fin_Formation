@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modele.AdminEntity;
+import modele.Administrateur;
 
 /**
  *
@@ -24,7 +24,7 @@ import modele.AdminEntity;
 public class ServletConnectAdmin extends HttpServlet {
 
     @EJB
-    private AdminEntityFacadeREST aef;
+    private WebServiceAdministrateur aef;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

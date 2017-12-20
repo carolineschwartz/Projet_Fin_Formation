@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,8 +32,8 @@ public class Administrateur implements Serializable {
     private String nom;
     private String prenom;
     private String email;
-    private String username;
-    private String passWord; 
+    @XmlElement private String username;
+    @XmlElement private String passWord; 
 
     // Constructeurs
     

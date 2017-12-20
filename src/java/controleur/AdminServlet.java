@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modele.AdminEntity;
+import modele.Administrateur;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -94,7 +94,7 @@ public class AdminServlet extends HttpServlet {
 
       CriteriaBuilder qb = em.getCriteriaBuilder();
       CriteriaQuery cq = qb.createQuery();
-      Root<AdminEntity> customer = cq.from(AdminEntity.class);
+      Root<Administrateur> customer = cq.from(Administrateur.class);
 
       //Constructing list of parameters
       List<Predicate> predicates = new ArrayList<>();
@@ -141,7 +141,7 @@ public class AdminServlet extends HttpServlet {
 
       request.getRequestDispatcher("admin.jsp").forward(request, response);
     } catch (ServletException | IOException ex) {
-      Logger.getLogger(AdminEntityFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(WebServiceAdministrateur.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 
