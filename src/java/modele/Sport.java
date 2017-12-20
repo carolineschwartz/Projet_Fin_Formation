@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -32,6 +32,7 @@ public class Sport implements Serializable {
     private Long id;
     private String nom;
     private String iconeUrl;
+    // Nb de calories perdues par heure pour le sport correspondant
     private int calorie;
     
     @OneToMany(mappedBy="sport")
@@ -81,13 +82,13 @@ public class Sport implements Serializable {
         this.iconeUrl = iconeUrl;
     }
 
-    public Activite getActivite() {
-        return activite;
-    }
-
-    public void setActivite(Activite activite) {
-        this.activite = activite;
-    }
+//    public Activite getActivite() {
+//        return activite;
+//    }
+//
+//    public void setActivite(Activite activite) {
+//        this.activite = activite;
+//    }
 
     public int getCalorie() {
         return calorie;
@@ -97,14 +98,13 @@ public class Sport implements Serializable {
         this.calorie = calorie;
     }
 
-  @XmlTransient
-    public List<Video> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
-    }
+//    public List<Video> getVideos() {
+//        return videos;
+//    }
+//
+//    public void setVideos(List<Video> videos) {
+//        this.videos = videos;
+//    }
 
     
     @Override
@@ -127,9 +127,6 @@ public class Sport implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "modele.Sport[ id=" + id + " ]";
-    }
+    
     
 }

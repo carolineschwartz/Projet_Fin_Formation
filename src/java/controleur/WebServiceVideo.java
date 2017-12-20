@@ -18,46 +18,38 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import modele.Activite;
+import modele.Video;
 
 /**
  *
  * @author schwartz
  */
 @Stateless
-@Path("webServiceActivite")
-public class WebServiceActivite extends AbstractFacade<Activite> {
+@Path("webServiceVideo")
+public class WebServiceVideo extends AbstractFacade<Video> {
 
     @PersistenceContext(unitName = "WebServeurSportPU")
     private EntityManager em;
 
-    public WebServiceActivite() {
-        super(Activite.class);
-
+    public WebServiceVideo() {
+        super(Video.class);
     }
 
     @POST
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Activite create(Activite entity) {
+    public Video create(Video entity) {
         return super.create(entity);
-    }
-
-    @GET
-    @Override
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Activite> findAll() {
-        return super.findAll();
     }
 
 //    @PUT
 //    @Path("{id}")
 //    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public void edit(@PathParam("id") Long id, Activite entity) {
+//    public void edit(@PathParam("id") Long id, Video entity) {
 //        super.edit(entity);
 //    }
+
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
@@ -67,14 +59,21 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Activite find(@PathParam("id") Long id) {
+    public Video find(@PathParam("id") Long id) {
         return super.find(id);
+    }
+
+    @GET
+    @Override
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Video> findAll() {
+        return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Activite> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Video> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
@@ -89,5 +88,5 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
 }

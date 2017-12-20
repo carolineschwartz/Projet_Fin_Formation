@@ -26,7 +26,7 @@ import modele.Utilisateur;
  * @author schwartz
  */
 @Stateless
-@Path("utilisateurCreate")
+@Path("webServiceUtilisateur")
 public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
 
     @PersistenceContext(unitName = "WebServeurSportPU")
@@ -37,6 +37,7 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
     }
 
     @POST
+    @Path("create")
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,6 +54,29 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
         }
     }
 
+    
+    @POST
+    @Path("findByEmail")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Utilisateur findByEmail(Utilisateur entity) {
+        Utilisateur resultEntity = null;
+
+        String request = "SELECT e.id FROM Utilisateur as e WHERE e.email  = ?1";
+        Query query = em.createQuery(request);
+        query.setParameter(1, entity.getEmail());
+
+        if (query.getResultList().isEmpty()) {
+            return resultEntity;
+        } else if (super.find(query.getResultList()).getPassWord().equals(entity.getPassWord())) {
+            return super.find(query.getResultList());
+        } else {
+            return resultEntity;
+
+        }
+    }
+
+    
     @Override
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

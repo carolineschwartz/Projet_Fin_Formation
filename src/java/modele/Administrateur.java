@@ -46,6 +46,13 @@ public class Administrateur implements Serializable {
         this.username = username;
         this.passWord = passWord;
     }
+
+    public Administrateur(String email, String passWord) {
+        this.email = email;
+        this.passWord = passWord;
+    }
+    
+    
     
     // getter et setter
 
