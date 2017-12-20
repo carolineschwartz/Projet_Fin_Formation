@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/schwartz/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceUtilisateur.java</file>
-            <file>file:/C:/Users/schwartz/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/modele/Sport.java</file>
-            <file>file:/C:/Users/schwartz/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/AbstractFacade.java</file>
-            <file>file:/C:/Users/schwartz/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/modele/Calorie.java</file>
-            <file>file:/C:/Users/schwartz/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/schwartz/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceActivite.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/modele/Sport.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/modele/Activite.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceUtilisateurPassWord.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceAdministrateur.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/modele/Utilisateur.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceUtilisateur.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceActivite.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceSport.java</file>
+            <file>file:/C:/Users/HB/Documents/CAROLINE/Formation1/Project_Fin_Formation1_Git/Projet_Fin_Formation/src/java/controleur/WebServiceVideo.java</file>
         </group>
     </open-files>
 </project-private>

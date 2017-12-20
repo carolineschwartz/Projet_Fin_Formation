@@ -11,9 +11,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.SecondaryTable;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
@@ -33,12 +32,15 @@ public class Utilisateur extends Administrateur implements Serializable  {
     @ManyToMany
     private List<Utilisateur> listAmi =new ArrayList();
     
-    @OneToMany(mappedBy="utilisateur")
-    private List<Poids> listePoids=new ArrayList<>();
-    
+  
     // Constructeurs
     public Utilisateur() {
     }
+
+    public Utilisateur(String email, String passWord) {
+        super(email, passWord);
+    }
+    
     
     public Utilisateur(String nom, String prenom, String email, String username, String passWord,
                  String dateNaiss, double taille, double poids ) {
@@ -90,14 +92,6 @@ public class Utilisateur extends Administrateur implements Serializable  {
         this.listAmi = listAmi;
     }
 
-    public List<Poids> getListePoids() {
-        return listePoids;
-    }
-
-    public void setListePoids(List<Poids> listePoids) {
-        this.listePoids = listePoids;
-    }
-
     
     // Calcul IMC
     public double calculImc(double taille, double poids){
@@ -127,6 +121,9 @@ public class Utilisateur extends Administrateur implements Serializable  {
 
     @Override
     public String toString() {
-        return "modele.Utilisateur[ id=" + id + " ]";
+        return "Utilisateur{" + "dateNaiss=" + dateNaiss + ", taille=" + taille + ", poids=" + poids +
+                ", activites=" + activites + ", listAmi=" + listAmi + '}';
     }
+
+    
 }

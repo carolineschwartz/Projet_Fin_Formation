@@ -25,13 +25,13 @@ import modele.Video;
  * @author schwartz
  */
 @Stateless
-@Path("modele.video")
-public class VideoFacadeREST extends AbstractFacade<Video> {
+@Path("webServiceVideo")
+public class WebServiceVideo extends AbstractFacade<Video> {
 
     @PersistenceContext(unitName = "WebServeurSportPU")
     private EntityManager em;
 
-    public VideoFacadeREST() {
+    public WebServiceVideo() {
         super(Video.class);
     }
 

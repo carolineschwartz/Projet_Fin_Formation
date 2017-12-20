@@ -25,7 +25,7 @@ import modele.Activite;
  * @author schwartz
  */
 @Stateless
-@Path("activiteWebService")
+@Path("webServiceActivite")
 public class WebServiceActivite extends AbstractFacade<Activite> {
 
     @PersistenceContext(unitName = "WebServeurSportPU")
@@ -33,6 +33,7 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
 
     public WebServiceActivite() {
         super(Activite.class);
+
     }
 
     @POST
@@ -40,7 +41,15 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Activite create(Activite entity) {
-        return super.create(entity);        
+        return super.create(entity);
+    }
+
+    @GET
+    @Override
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Activite> findAll() {
+        return super.findAll();
     }
 
 //    @PUT
@@ -49,7 +58,6 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
 //    public void edit(@PathParam("id") Long id, Activite entity) {
 //        super.edit(entity);
 //    }
-
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
@@ -61,13 +69,6 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Activite find(@PathParam("id") Long id) {
         return super.find(id);
-    }
-
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Activite> findAll() {
-        return super.findAll();
     }
 
     @GET
@@ -88,5 +89,5 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

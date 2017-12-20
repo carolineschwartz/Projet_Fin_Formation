@@ -31,6 +31,7 @@ public class Sport implements Serializable {
     private Long id;
     private String nom;
     private String iconeUrl;
+    // Nb de calories perdues par heure pour le sport correspondant
     private int calorie;
     
     @OneToMany(mappedBy="sport")
@@ -80,29 +81,29 @@ public class Sport implements Serializable {
         this.iconeUrl = iconeUrl;
     }
 
-    public Activite getActivite() {
-        return activite;
-    }
+//    public Activite getActivite() {
+//        return activite;
+//    }
+//
+//    public void setActivite(Activite activite) {
+//        this.activite = activite;
+//    }
 
-    public void setActivite(Activite activite) {
-        this.activite = activite;
-    }
-
-    public int getCalories() {
+    public int getCalorie() {
         return calorie;
     }
 
-    public void setCalories(int calorie) {
+    public void setCalorie(int calorie) {
         this.calorie = calorie;
     }
 
-    public List<Video> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
-    }
+//    public List<Video> getVideos() {
+//        return videos;
+//    }
+//
+//    public void setVideos(List<Video> videos) {
+//        this.videos = videos;
+//    }
 
     
     @Override
@@ -125,9 +126,6 @@ public class Sport implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "modele.Sport[ id=" + id + " ]";
-    }
+    
     
 }

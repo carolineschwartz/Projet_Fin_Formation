@@ -25,13 +25,13 @@ import modele.Administrateur;
  * @author schwartz
  */
 @Stateless
-@Path("modele.administrateur")
-public class AdministrateurFacadeREST extends AbstractFacade<Administrateur> {
+@Path("webServiceAdministrateur")
+public class WebServiceAdministrateur extends AbstractFacade<Administrateur> {
 
     @PersistenceContext(unitName = "WebServeurSportPU")
     private EntityManager em;
 
-    public AdministrateurFacadeREST() {
+    public WebServiceAdministrateur() {
         super(Administrateur.class);
     }
 
@@ -43,12 +43,12 @@ public class AdministrateurFacadeREST extends AbstractFacade<Administrateur> {
         return super.create(entity);
     }
 
-//    @PUT
-//    @Path("{id}")
-//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public void edit(@PathParam("id") Long id, Administrateur entity) {
-//        super.edit(entity);
-//    }
+    @PUT
+    @Path("{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void edit(@PathParam("id") Long id, Administrateur entity) {
+        super.edit(entity);
+    }
 
     @DELETE
     @Path("{id}")

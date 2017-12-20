@@ -20,9 +20,8 @@ import modele.Utilisateur;
  *
  * @author schwartz
  */
-
 @Stateless
-@Path("utilisateurPassWord")
+@Path("webServiceUtilisateurPassWord")
 public class WebServiceUtilisateurPassWord extends AbstractFacade<Utilisateur> {
 
     /**
@@ -40,19 +39,19 @@ public class WebServiceUtilisateurPassWord extends AbstractFacade<Utilisateur> {
     @Produces(MediaType.APPLICATION_JSON)
     public Utilisateur findByEmail(Utilisateur entity) {
         Utilisateur resultEntity = null;
- 
+
         String request = "SELECT e.id FROM Utilisateur as e WHERE e.email  = ?1";
-        Query query = getEntityManager().createQuery(request);
+        Query query = em.createQuery(request);
         query.setParameter(1, entity.getEmail());
-        
+
         if (query.getResultList().isEmpty()) {
             return resultEntity;
-        } else if(super.find(query.getResultList()).getPassWord().equals(entity.getPassWord())) {
+        } else if (super.find(query.getResultList()).getPassWord().equals(entity.getPassWord())) {
             return super.find(query.getResultList());
-        }else{
+        } else {
             return resultEntity;
 
-    }
+        }
     }
 
     @Override
