@@ -38,8 +38,8 @@ public class Sport implements Serializable {
     @OneToMany(mappedBy="sport")
     private List<Video> videos = new ArrayList<>();
 
-    @OneToOne(mappedBy="sport")
-    private Activite activite;
+//    @OneToOne(mappedBy="sport")
+//    private Activite activite;
    
     
     //Constructeurs

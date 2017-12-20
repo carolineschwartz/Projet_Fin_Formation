@@ -101,7 +101,7 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Utilisateur> findAll() {
         return super.findAll();
     }

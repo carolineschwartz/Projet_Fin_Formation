@@ -84,12 +84,12 @@ public class WebServiceSport extends AbstractFacade<Sport> {
 //        return super.findRange(new int[]{from, to});
 //    }
 //
-//    @GET
-//    @Path("count")
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public String countREST() {
-//        return String.valueOf(super.count());
-//    }
+    @GET
+    @Path("count")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String countREST() {
+        return String.valueOf(super.count());
+    }
 
     @Override
     protected EntityManager getEntityManager() {
