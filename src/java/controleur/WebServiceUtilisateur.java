@@ -29,100 +29,98 @@ import modele.Utilisateur;
 @Path("webServiceUtilisateur")
 public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
 
-    @PersistenceContext(unitName = "WebServeurSportPU")
-    private EntityManager em;
+  @PersistenceContext(unitName = "WebServeurSportPU")
+  private EntityManager em;
 
-    public WebServiceUtilisateur() {
-        super(Utilisateur.class);
+  public WebServiceUtilisateur() {
+    super(Utilisateur.class);
+  }
+
+  @POST
+  //@Path("create")
+  @Override
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Utilisateur create(Utilisateur entity) {
+
+    String request = "SELECT e FROM Utilisateur as e WHERE e.email  = ?1";
+    Query query = getEntityManager().createQuery(request);
+    query.setParameter(1, entity.getEmail());
+
+    if (query.getResultList().isEmpty()) {
+      return super.create(entity);
+    } else {
+      return entity;
     }
+  }
 
-    @POST
-    @Path("create")
-    @Override
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Utilisateur create(Utilisateur entity) {
+  @POST
+  @Path("findByEmail")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Utilisateur findByEmail(Utilisateur entity) {
+    Utilisateur resultEntity = null;
 
-        String request = "SELECT e FROM Utilisateur as e WHERE e.email  = ?1";
-        Query query = getEntityManager().createQuery(request);
-        query.setParameter(1, entity.getEmail());
+    String request = "SELECT e.id FROM Utilisateur as e WHERE e.email  = ?1";
+    Query query = em.createQuery(request);
+    query.setParameter(1, entity.getEmail());
 
-        if (query.getResultList().isEmpty()) {
-            return super.create(entity);
-        } else {
-            return entity;
-        }
+    if (query.getResultList().isEmpty()) {
+      return resultEntity;
+    } else if (super.find(query.getResultList()).getPassWord().equals(entity.getPassWord())) {
+      return super.find(query.getResultList());
+    } else {
+      return resultEntity;
+
     }
+  }
 
-    
-    @POST
-    @Path("findByEmail")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Utilisateur findByEmail(Utilisateur entity) {
-        Utilisateur resultEntity = null;
+  @Override
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Utilisateur edit(Utilisateur entity) {
+    super.edit(entity);
+    return entity;
+  }
 
-        String request = "SELECT e.id FROM Utilisateur as e WHERE e.email  = ?1";
-        Query query = em.createQuery(request);
-        query.setParameter(1, entity.getEmail());
+  @DELETE
+  @Path("{id}")
+  public void remove(@PathParam("id") Long id) {
+    super.remove(super.find(id));
+  }
 
-        if (query.getResultList().isEmpty()) {
-            return resultEntity;
-        } else if (super.find(query.getResultList()).getPassWord().equals(entity.getPassWord())) {
-            return super.find(query.getResultList());
-        } else {
-            return resultEntity;
+  @GET
+  @Path("{id}")
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public Utilisateur find(@PathParam("id") Long id) {
+    return super.find(id);
+  }
 
-        }
-    }
+  @GET
+  @Override
+  @Produces({MediaType.APPLICATION_JSON})
+  public List<Utilisateur> findAll() {
+    return super.findAll();
+  }
 
-    
-    @Override
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Utilisateur edit(Utilisateur entity) {
-        super.edit(entity);
-        return entity;
-    }
+  @GET
+  @Path("{from}/{to}")
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public List<Utilisateur> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    return super.findRange(new int[]{from, to});
+  }
 
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
-    }
+  @GET
+  @Path("count")
+  @Produces(MediaType.TEXT_PLAIN)
+  public String countREST() {
+    return String.valueOf(super.count());
+  }
 
-    @GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Utilisateur find(@PathParam("id") Long id) {
-        return super.find(id);
-    }
-
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<Utilisateur> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Utilisateur> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
+  }
 
 }

@@ -3,17 +3,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            input {
-                padding: 0.2em; 
-                box-sizing: border-box;
-                width: 100% 
-            } 
 
-        </style>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8"/>
         <title>Admin Page</title>
+        <link rel="stylesheet" href="css/admin.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> 
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -31,19 +26,28 @@
             <button name='edit'>add</button><br>
             <button name='user' value="webServiceUtilisateur">show user list</button><br>
             <button name='sport' value="webServiceSport">show sport list</button><br>
-            <button name='video' value="modele.video">show video list</button>
-            
-            
+            <button name='video' value="webServiceVideo">show video list</button>
+
+
             <p>connected</p>
             <script>
 
-                function loadTable(api) {
+
+                var api = "webServiceUtilisateur";
+
+                function isObject(item) {
+                    return (typeof item === "object" && !Array.isArray(item) && item !== null);
+                }
+
+
+
+                function loadTable() {
                     $("#list").html("");
                     $.ajax({
                         type: "GET",
                         async: true,
                         contentType: 'application/json',
-                        url: "api/"+api,
+                        url: "api/" + api,
                         success: function (response) {
                             if (response[0] !== null) {
                                 var thHTML = '';
@@ -57,7 +61,10 @@
                                 $.each(response, function (i, item) {
                                     trHTML += '<tr>';
                                     $.each(Object.getOwnPropertyNames(response[0]), function (j, key) {
-                                        trHTML += '<td>' + item[key] + '</td>';
+                                        if (isObject(item[key]))
+                                            trHTML += '<td>' + item[key].id + '</td>';
+                                        else
+                                            trHTML += '<td>' + item[key] + '</td>';
                                     });
                                     trHTML += '<td><button name="edit" value=' + item["id"] + '>edit</button></td>' +
                                             '<td><button name="del" value=' + item["id"] + '>supprimer</button></td></tr>';
@@ -69,36 +76,45 @@
                     });
                 }
 
-                function delUser(i) {
+                function delItem(i) {
                     $.ajax({
                         type: "DELETE",
                         async: true,
                         contentType: 'application/json',
-                        url: "api/modele.utilisateurentity/" + i,
+                        url: "api/" + api + "/" + i,
                         success: function (data) {
                             console.log(data);
 
 
                         },
-                            complete: function(){
+                        complete: function () {
                             loadTable();
-                            }
+                        }
                     });
                 }
 
-
+//$('div[name="name1"]');
 
                 function addUser() {
                     var myjson = '{';
-                    $.each(document.getElementsByName("myform")[0].childNodes, function (i, val) {
+                    $.each($('[name="myform"]')[0].childNodes, function (i, val) {
                         if ((val.childNodes[0].name != 'id' && val.childNodes[0].name !== "update") ||
                                 (val.childNodes[0].name == 'id' && val.childNodes[0].value != 'undefined')) {
                             myjson += '"' + val.childNodes[0].name + '":"' + val.childNodes[0].value + '"';
-                            if (i < document.getElementsByName("myform")[0].childNodes.length - 2) {
+                            if (i < $('[name="myform"]')[0].childNodes.length - 2) {
                                 myjson += ',';
                             }
                         }
                     });
+//                    $.each(document.getElementsByName("myform")[0].childNodes, function (i, val) {
+//                        if ((val.childNodes[0].name != 'id' && val.childNodes[0].name !== "update") ||
+//                                (val.childNodes[0].name == 'id' && val.childNodes[0].value != 'undefined')) {
+//                            myjson += '"' + val.childNodes[0].name + '":"' + val.childNodes[0].value + '"';
+//                            if (i < document.getElementsByName("myform")[0].childNodes.length - 2) {
+//                                myjson += ',';
+//                            }
+//                        }
+//                    });
                     myjson += '}';
                     if ($.parseJSON(myjson).id == '') {
                         console.log($.parseJSON(myjson).id);
@@ -107,18 +123,18 @@
                             type: "POST",
                             async: true,
                             contentType: 'application/json',
-                            url: "api/modele.utilisateurentity",
+                            url: "api/" + api,
                             data: myjson,
                             success: function (response) {
                                 console.log("OK");
                                 console.log(response);
                             },
                             error: function (code) {
-                                console.log("error d'executtion");
+                                console.log("error d'executtion add user");
                                 console.log(code);
                             },
-                            complete: function(){
-                            loadTable();
+                            complete: function () {
+                                loadTable();
                             }
 
                         });
@@ -127,7 +143,7 @@
                             type: "put",
                             async: true,
                             contentType: 'application/json',
-                            url: "api/modele.utilisateurentity/" + $.parseJSON(myjson).id,
+                            url: "api/" + api + $.parseJSON(myjson).id,
                             data: myjson,
                             success: function (response) {
                                 console.log("OK");
@@ -136,8 +152,8 @@
                                 console.log("error d'executtion");
                                 console.log(code);
                             },
-                            complete: function(){
-                            loadTable();
+                            complete: function () {
+                                loadTable();
                             }
                         });
                     }
@@ -146,13 +162,13 @@
 
                 }
 
-                function editUser(id) {
-                    if (id !== "") {
+                function editItem(id) {
+                    if (id != "") {
                         $.ajax({
                             type: "GET",
                             async: true,
                             contentType: 'application/json',
-                            url: "api/modele.utilisateurentity/" + id,
+                            url: "api/" + api + "/" + id,
                             success: function (response) {
                                 console.log(response);
                                 var form = '<tr name="myform">';
@@ -160,7 +176,10 @@
                                     $.each(response, function (key, value) {
                                         if (key == 'id')
                                             form += '<td><input type="hidden" name="' + key + '" value="' + value + '"></td>';
-                                        else
+//                                        else if (isObject(value))
+//                                                alert(value);
+//                                            form += '<td><input name="' + key + '"value="' + value + '"/></td>';
+                                        else 
                                             form += '<td><input name="' + key + '"value="' + value + '"/></td>';
 
                                     })
@@ -169,14 +188,14 @@
 
                                 }
                             }
-                            
+
                         });
                     } else {
                         $.ajax({
                             type: "GET",
                             async: true,
                             contentType: 'application/json',
-                            url: "api/modele.utilisateurentity",
+                            url: "api/" + api,
                             success: function (response) {
                                 var form = '<tr name="myform">';
                                 if (response[0] !== null) {
@@ -198,53 +217,61 @@
                 $(document).ready(function () {
 
                     //                   $("button[name=add]").hide();
-                    
-                    $("body").delegate("button","click",function (){
+
+
+
+                    $("body").delegate("button", "click", function () {
                         switch ($(this).attr("name")) {
                             case "edit" :
-                                editUser($(this).val());
-                                alert($(this).val() + " " + $(this).attr("name"));
-                                brake;
+                                editItem($(this).val());
+                                // alert($(this).val() + " " + $(this).attr("name"));
+                                break;
                             case "del" :
-                                delUser($(this).val());
-                                alert("del done");
-                                brake;
+
+                                delItem($(this).val());
+                                // alert("del done");
+                                break;
                             case "update":
-                                alert("add user");
+                                // alert("add user");
                                 addUser();
-                                brake;
+                                break;
                             case "user":
                             case "sport":
                             case "video":
-                                loadTable($(this).val());
-                                brake;
-                                
-                        }
-                        
-                        
-                    });
-        
-                    $("body").delegate("button", "click", function () {
-                        if ($(this).attr("name") === 'edit')
-                        {
-                            editUser($(this).val());
-                            alert($(this).val() + " " + $(this).attr("name"));
-                        } else if ($(this).attr("name") === 'del')
-                        {
-                            delUser($(this).val());
-                            alert("del done");
-                        } else if ($(this).attr("name") === 'update') {
-                            alert("add user");
-                            addUser();
-                        } else {
-                            alert($(this).attr("value"));
+                                api = $(this).val();
+                                loadTable();
+                                break;
                         }
 
+
                     });
+
+//                    $("body").delegate("button", "click", function () {
+//                        if ($(this).attr("name") === 'edit')
+//                        {
+//                            if ($(this).val()==""){
+//                                editItem($(this).val());
+//                            }
+//                            else{
+//                                editItem("");
+//                            }
+//                            // alert($(this).val() + " " + $(this).attr("name"));
+//                        } else if ($(this).attr("name") === 'del')
+//                        {
+//                            delItem($(this).val());
+//                            // alert("del done");
+//                        } else if ($(this).attr("name") === 'update') {
+//                            // alert("add user");
+//                            addUser();
+//                        } else {
+//                            // alert($(this).attr("value"));
+//                        }
+//
+//                    });
                     loadTable();
 
                 });
-               
+
 
             </script>
         </c:if>

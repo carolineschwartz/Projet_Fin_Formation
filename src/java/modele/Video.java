@@ -5,6 +5,7 @@
  */
 package modele;
 
+import controleur.WebServiceSport;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,10 +42,10 @@ public class Video implements Serializable {
         this.url = url;
     }
 
-    public Video(String url, String nom, Sport sport) {
+    public Video(String url, String nom, Long sportid) {
       this.url = url;
       this.nom = nom;
-      this.sport = sport;
+      this.sport=new WebServiceSport().find(sportid);
     }
 
     public Video(String url, String nom) {
@@ -52,10 +53,10 @@ public class Video implements Serializable {
       this.nom = nom;
     }
 
-    public Video(String url, int sportId) {
-        this.url = url;
-        this.sport = sport;
-    }
+//    public Video(String url, Long sportId) {
+//        this.url = url;
+//        this.sport.setId(sportId);
+//    }
 
     public String getNom() {
       return nom;
@@ -80,14 +81,20 @@ public class Video implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
-
-    public Sport getSportId() {
-        return sport;
-    }
-
-    public void setSportId(Sport sport) {
-        this.sport = sport;
-    }
+//
+//    public Long getSportId() {
+//        return sport.getId();
+//    }
+//
+//    public void setSportId(Long id) {
+//        this.sport.setId(id);
+//    }
+    
+//    public String getSportName()
+//    {
+//      return this.sport.getNom();
+//    }
+    
     
     public Long getId() {
         return id;

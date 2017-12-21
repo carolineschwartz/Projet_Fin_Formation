@@ -46,6 +46,16 @@ public class Sport implements Serializable {
     public Sport() {
     }
 
+  public Sport(Long id) {
+    this.id = id;
+  }
+
+  public Sport(String id) {
+    this.id = Long.parseLong(id);
+  }
+
+    
+    
     public Sport(String nom, String iconeUrl) {
         this.nom = nom;
         this.iconeUrl = iconeUrl;

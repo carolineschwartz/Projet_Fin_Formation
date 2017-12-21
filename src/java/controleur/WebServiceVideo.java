@@ -35,6 +35,16 @@ public class WebServiceVideo extends AbstractFacade<Video> {
         super(Video.class);
     }
 
+    
+    
+    @GET
+    @Override
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Video> findAll() {
+        return super.findAll();
+    }
+
+    
     @POST
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
@@ -45,7 +55,7 @@ public class WebServiceVideo extends AbstractFacade<Video> {
 
 //    @PUT
 //    @Path("{id}")
-//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    @Consumes({MediaType.APPLICATION_JSON})
 //    public void edit(@PathParam("id") Long id, Video entity) {
 //        super.edit(entity);
 //    }
@@ -58,21 +68,14 @@ public class WebServiceVideo extends AbstractFacade<Video> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Video find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Video> findAll() {
-        return super.findAll();
-    }
-
-    @GET
     @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Video> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
