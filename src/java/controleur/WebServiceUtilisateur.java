@@ -77,6 +77,7 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
 
   @Override
   @PUT
+  @Path("{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Utilisateur edit(Utilisateur entity) {
@@ -92,7 +93,7 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
 
   @GET
   @Path("{id}")
-  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Produces({MediaType.APPLICATION_JSON})
   public Utilisateur find(@PathParam("id") Long id) {
     return super.find(id);
   }
@@ -104,12 +105,12 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
     return super.findAll();
   }
 
-  @GET
-  @Path("{from}/{to}")
-  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-  public List<Utilisateur> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-    return super.findRange(new int[]{from, to});
-  }
+//  @GET
+//  @Path("{from}/{to}")
+//  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//  public List<Utilisateur> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+//    return super.findRange(new int[]{from, to});
+//  }
 
   @GET
   @Path("count")

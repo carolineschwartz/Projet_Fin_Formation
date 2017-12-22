@@ -68,13 +68,13 @@ public class WebServiceSport extends AbstractFacade<Sport> {
         super.remove(super.find(id));
     }
 
-//    @GET
-//    @Path("{id}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public Sport find(@PathParam("id") Long id) {
-//        return super.find(id);
-//    }
-//
+    @GET
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Sport find(@PathParam("id") Long id) {
+        return super.find(id);
+    }
+
 //   
 //
 //    @GET

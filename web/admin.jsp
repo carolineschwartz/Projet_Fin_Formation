@@ -34,6 +34,7 @@
 
 
                 var api = "webServiceUtilisateur";
+                var form = '<tr name="myform">';
 
                 function isObject(item) {
                     return (typeof item === "object" && !Array.isArray(item) && item !== null);
@@ -143,7 +144,7 @@
                             type: "put",
                             async: true,
                             contentType: 'application/json',
-                            url: "api/" + api + $.parseJSON(myjson).id,
+                            url: "api/" + api +"/" + $.parseJSON(myjson).id,
                             data: myjson,
                             success: function (response) {
                                 console.log("OK");
@@ -171,7 +172,7 @@
                             url: "api/" + api + "/" + id,
                             success: function (response) {
                                 console.log(response);
-                                var form = '<tr name="myform">';
+//                                var form = '<tr name="myform">';
                                 if (response !== null) {
                                     $.each(response, function (key, value) {
                                         if (key == 'id')
@@ -197,7 +198,7 @@
                             contentType: 'application/json',
                             url: "api/" + api,
                             success: function (response) {
-                                var form = '<tr name="myform">';
+//                                var form = '<tr name="myform">';
                                 if (response[0] !== null) {
                                     $.each(Object.getOwnPropertyNames(response[0]), function (i, champ) {
                                         if (i === 0) {

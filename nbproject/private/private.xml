@@ -3,36 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/AdministrateurFacadeREST.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/ActiviteFacadeREST.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceAdministrateur.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/UtilisateurEntityFacadeREST.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/VideoEntityFacadeREST.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Poids.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/UtilisateurEntity.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Administrateur.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/web/admin.jsp</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Activite.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/SportFacadeREST.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/AdminEntity.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceUtilisateur.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/ServletConnectAdmin.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/SportEntityFacadeREST.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/AbstractFacade.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/web/WEB-INF/glassfish-resources.xml</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Video.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Utilisateur.java</file>
             <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceUtilisateurPassWord.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/SportEntity.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Utilisateur.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceAdministrateur.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/web/css/admin.css</file>
             <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceActivite.java</file>
             <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceSport.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/service/AdminEntityFacadeREST.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Administrateur.java</file>
             <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Sport.java</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/web/index.jsp</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/web/newjsp.jsp</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/web/admin.jsp</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/web/index.html</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Activite.java</file>
             <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/AdminServlet.java</file>
             <file>file:/Users/z/NetBeansProjects/webserveursport/src/conf/persistence.xml</file>
-            <file>file:/Users/z/NetBeansProjects/webserveursport/web/WEB-INF/web.xml</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/nbproject/build-impl.xml</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceUtilisateur.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/ServletConnectAdmin.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/AbstractFacade.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/controleur/WebServiceVideo.java</file>
+            <file>file:/Users/z/NetBeansProjects/webserveursport/src/java/modele/Video.java</file>
         </group>
     </open-files>
 </project-private>

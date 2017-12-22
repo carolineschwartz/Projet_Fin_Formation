@@ -5,10 +5,15 @@
  */
 package controleur;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +23,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import modele.Administrateur;
+import modele.Sport;
 import modele.Video;
 
 /**
@@ -69,8 +76,21 @@ public class WebServiceVideo extends AbstractFacade<Video> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Video find(@PathParam("id") Long id) {
-        return super.find(id);
+    public List<Video> find(@PathParam("id") Long sportId) {
+CriteriaBuilder qb = em.getCriteriaBuilder(); // on crree le constructeur des critères
+        CriteriaQuery cq = qb.createQuery(); // on crée une requette 
+        Root<Video> videoRoot = cq.from(Video.class); // on recupere tous les admins
+        List<Predicate> predicates = new ArrayList<>(); // on crée la liste de conditions
+
+        if (sportId != null) {  //si le nom d'utilisateur  et mot de pas ne sont pas vide on les ajoute dans les conditions 
+        predicates.add(
+                qb.equal(videoRoot.get("sport"),new Sport(sportId)));
+       
+    }
+   
+    
+    return (List<Video>) cq.select(videoRoot).where(predicates.toArray(new Predicate[]{})); // on recupere que les resultats correspo    }
+    
     }
 
     @GET
