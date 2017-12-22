@@ -70,6 +70,7 @@ public class Video implements Serializable {
         return sport;
     }
 
+
     // getter et setter
     public void setSport(Sport sport) {   
         this.sport = sport;

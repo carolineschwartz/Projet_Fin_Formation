@@ -37,12 +37,11 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
     }
 
     @POST
-    @Path("create")
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Utilisateur create(Utilisateur entity) {
-
+        
         String request = "SELECT e FROM Utilisateur as e WHERE e.email  = ?1";
         Query query = getEntityManager().createQuery(request);
         query.setParameter(1, entity.getEmail());
@@ -54,7 +53,6 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
         }
     }
 
-    
     @POST
     @Path("findByEmail")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -76,7 +74,6 @@ public class WebServiceUtilisateur extends AbstractFacade<Utilisateur> {
         }
     }
 
-    
     @Override
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

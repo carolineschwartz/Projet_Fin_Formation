@@ -42,10 +42,14 @@ public class WebServiceSport extends AbstractFacade<Sport> {
     @Override
     @Produces(MediaType.APPLICATION_JSON)
     public List<Sport> findAll() {
+        
        Query query =em.createQuery("SELECT t FROM Sport as t");
-       return query.getResultList();
-    
+       if(query.getResultList().isEmpty()){
+           return null;
+       }
+       return query.getResultList();    
     }
+    
     
     @POST
     @Override

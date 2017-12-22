@@ -5,6 +5,8 @@
  */
 package modele;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Calendar;
@@ -39,6 +41,7 @@ public class Activite implements Serializable {
     private Sport sport;
 
     @OneToOne
+    @JsonBackReference
     private Utilisateur utilisateur;
 
 //    @Temporal(TemporalType.DATE    @Column(name = "DATE_FIELD")
@@ -51,6 +54,7 @@ public class Activite implements Serializable {
     public Activite() {
     }
 
+    
     public Activite(Long id, double duree, int nombre, Double caloriePerdues, 
             Sport sport, Utilisateur utilisateur) {
         this.id = id;
@@ -91,14 +95,15 @@ public class Activite implements Serializable {
 //        this.dateField = dateField;
 //    }
     
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    
+    
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public Double getCaloriePerdues() {
         return caloriePerdues;
@@ -107,6 +112,9 @@ public class Activite implements Serializable {
     public void setCaloriePerdues(Double caloriePerdues) {
         this.caloriePerdues = caloriePerdues;
     }
+
+
+    
 
     public Long getId() {
         return id;

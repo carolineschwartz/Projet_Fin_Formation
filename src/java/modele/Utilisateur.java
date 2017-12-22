@@ -5,6 +5,8 @@
  */
 package modele;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Utilisateur extends Administrateur implements Serializable  {
     private double poids;
     
     @OneToMany(mappedBy="utilisateur")
+    @JsonManagedReference
     private List<Activite> activites =new ArrayList();
     
     @ManyToMany

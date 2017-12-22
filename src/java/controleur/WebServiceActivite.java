@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import modele.Activite;
+import modele.Utilisateur;
 
 /**
  *
@@ -36,7 +38,36 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
 
     }
 
+    @GET
+    @Path("findActivite/{id : (\\w+)?}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Activite> findActivite(@PathParam("id") String id) {
+ 
+        if (id.isEmpty()) {
+           return super.findAll();
+        }
+
+        String request = "SELECT a FROM Activite a WHERE a.utilisateur.id = :id";
+   
+        long longId= Long.parseLong(id);
+        Query query = em.createQuery(request);
+        query.setParameter("id", longId);
+
+       return query.getResultList(); 
+       
+
+       
+       }
+
+      
+    
+  
+        
+    
+    
+    
     @POST
+    @Path("create")
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,13 +75,7 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
         return super.create(entity);
     }
 
-    @GET
-    @Override
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Activite> findAll() {
-        return super.findAll();
-    }
+    
 
 //    @PUT
 //    @Path("{id}")
