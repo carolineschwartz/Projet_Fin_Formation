@@ -37,6 +37,7 @@ public class WebServiceActivite extends AbstractFacade<Activite> {
     }
 
     @POST
+    @Path("create")
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

@@ -76,21 +76,8 @@ public class WebServiceVideo extends AbstractFacade<Video> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Video> find(@PathParam("id") Long sportId) {
-CriteriaBuilder qb = em.getCriteriaBuilder(); // on crree le constructeur des critères
-        CriteriaQuery cq = qb.createQuery(); // on crée une requette 
-        Root<Video> videoRoot = cq.from(Video.class); // on recupere tous les admins
-        List<Predicate> predicates = new ArrayList<>(); // on crée la liste de conditions
-
-        if (sportId != null) {  //si le nom d'utilisateur  et mot de pas ne sont pas vide on les ajoute dans les conditions 
-        predicates.add(
-                qb.equal(videoRoot.get("sport"),new Sport(sportId)));
-       
-    }
-   
-    
-    return (List<Video>) cq.select(videoRoot).where(predicates.toArray(new Predicate[]{})); // on recupere que les resultats correspo    }
-    
+    public Video find(@PathParam("id") Long id) {
+        return super.find(id);
     }
 
     @GET

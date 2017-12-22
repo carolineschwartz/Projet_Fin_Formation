@@ -70,7 +70,7 @@ public class WebServiceSport extends AbstractFacade<Sport> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Sport find(@PathParam("id") Long id) {
         return super.find(id);
     }
